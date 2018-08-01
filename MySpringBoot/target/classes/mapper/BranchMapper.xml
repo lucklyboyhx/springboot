@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.MySpringBoot.dao.BranchDao">
+	<resultMap id="BaseResultMap" type="com.example.MySpringBoot.model.Branch">
+		<id column="branch_num" jdbcType="INTEGER" property="branchNum" />
+		<result column="branch_code" jdbcType="VARCHAR" property="branchCode" />
+		<result column="branch_name" jdbcType="VARCHAR" property="branchName" />
+		<result column="branch_actived" jdbcType="BIT" property="branchActived" />
+		<result column="branch_postcode" jdbcType="VARCHAR" property="branchPostcode" />
+		<result column="branch_addr" jdbcType="VARCHAR" property="branchAddr" />
+		<result column="branch_expiration" jdbcType="DATE" property="branchExpiration" />
+		<result column="branch_lng" jdbcType="REAL" property="branchLng" />
+		<result column="branch_lat" jdbcType="REAL" property="branchLat" />
+		<result column="branch_province" jdbcType="VARCHAR" property="branchProvince" />
+		<result column="branch_city" jdbcType="VARCHAR" property="branchCity" />
+		<result column="branch_district" jdbcType="VARCHAR" property="branchDistrict" />
+		<result column="branch_link_man" jdbcType="VARCHAR" property="branchLinkMan" />
+		<result column="branch_link_phone" jdbcType="VARCHAR" property="branchLinkPhone" />
+		<result column="branch_settlement_type" jdbcType="VARCHAR" property="branchSettlementType" />
+		<result column="branch_closed_time" jdbcType="TIME" property="branchClosedTime" />
+		<result column="branch_create_time" jdbcType="TIMESTAMP" property="branchCreateTime" />
+	</resultMap>
+	<sql id="allColumns">
+		branch_num, branch_code, branch_name, branch_actived,
+		branch_postcode,
+		branch_addr,
+		branch_expiration, branch_lng, branch_lat, branch_province, branch_city, branch_district,
+		branch_link_man, branch_link_phone, branch_settlement_type, branch_closed_time, branch_create_time
+	</sql>
+	
+	<select id="list" parameterType="java.util.List" resultMap="BaseResultMap">
+		select * from branch 
+		<where>
+			<if test="branchNums != null and branchNums.size > 0">
+				and branch_num in (
+					<foreach collection="branchNums" item="branchNum" separator=",">
+						#{branchNum}
+					</foreach>
+				)
+			</if>
+		</where>
+	</select>
+
+</mapper>

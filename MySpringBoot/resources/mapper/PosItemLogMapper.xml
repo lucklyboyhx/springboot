@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.MySpringBoot.dao.PosItemLogDao">
+	<cache></cache>
+    <cache type="org.mybatis.caches.redis.RedisCache" />
+
+  <resultMap id="BaseResultMap" type="com.example.MySpringBoot.model.PosItemLog">
+  	<id column="pos_item_log_id" jdbcType="BIGINT" property="posItemLogId" />
+    <result column="pos_item_log_fid" jdbcType="VARCHAR" property="posItemLogFid" />
+    <result column="storehouse_num" jdbcType="INTEGER" property="storehouseNum" />
+    <result column="branch_num" jdbcType="INTEGER" property="branchNum" />
+    <result column="item_num" jdbcType="INTEGER" property="itemNum" />
+    <result column="pos_item_log_item_code" jdbcType="VARCHAR" property="posItemLogItemCode" />
+    <result column="pos_item_log_item_name" jdbcType="VARCHAR" property="posItemLogItemName" />
+    <result column="pos_item_log_item_unit" jdbcType="VARCHAR" property="posItemLogItemUnit" />
+    <result column="pos_item_log_inout_flag" jdbcType="BIT" property="posItemLogInoutFlag" />
+    <result column="pos_item_log_summary" jdbcType="VARCHAR" property="posItemLogSummary" />
+    <result column="pos_item_log_date" jdbcType="DATE" property="posItemLogDate" />
+    <result column="pos_item_log_item_price" jdbcType="DECIMAL" property="posItemLogItemPrice" />
+    <result column="pos_item_log_item_balance" jdbcType="DECIMAL" property="posItemLogItemBalance" />
+    <result column="pos_item_log_item_amount" jdbcType="DECIMAL" property="posItemLogItemAmount" />
+    <result column="pos_item_log_operator" jdbcType="VARCHAR" property="posItemLogOperator" />
+    <result column="pos_item_log_operate_time" jdbcType="TIMESTAMP" property="posItemLogOperateTime" />
+    <result column="pos_item_log_memo" jdbcType="VARCHAR" property="posItemLogMemo" />
+    <result column="pos_item_log_bill_no" jdbcType="VARCHAR" property="posItemLogBillNo" />
+    <result column="pos_item_log_bill_detail_num" jdbcType="INTEGER" property="posItemLogBillDetailNum" />
+    <result column="pos_item_log_cost_price" jdbcType="DECIMAL" property="posItemLogCostPrice" />
+    <result column="pos_item_log_item_assist_unit" jdbcType="VARCHAR" property="posItemLogItemAssistUnit" />
+    <result column="pos_item_log_item_assist_balance" jdbcType="DECIMAL" property="posItemLogItemAssistBalance" />
+    <result column="pos_item_log_item_assist_amount" jdbcType="DECIMAL" property="posItemLogItemAssistAmount" />
+    <result column="pos_item_log_item_spec" jdbcType="VARCHAR" property="posItemLogItemSpec" />
+    <result column="pos_item_log_item_category" jdbcType="INTEGER" property="posItemLogItemCategory" />
+    <result column="pos_item_log_money" jdbcType="DECIMAL" property="posItemLogMoney" />
+    <result column="pos_item_log_bizday" jdbcType="CHAR" property="posItemLogBizday" />
+    <result column="pos_item_log_item_assist_price" jdbcType="DECIMAL" property="posItemLogItemAssistPrice" />
+    <result column="pos_item_log_lot_num" jdbcType="VARCHAR" property="posItemLogLotNum" />
+    <result column="pos_item_log_order_operate_date" jdbcType="DATE" property="posItemLogOrderOperateDate" />
+    <result column="pos_item_log_daily_settlement_num" jdbcType="INTEGER" property="posItemLogDailySettlementNum" />
+    <result column="pos_item_log_cost_money" jdbcType="DECIMAL" property="posItemLogCostMoney" />
+    <result column="department_num" jdbcType="INTEGER" property="departmentNum" />
+  </resultMap>
+  <sql id="allColumns">
+    pos_item_log_id, pos_item_log_fid, storehouse_num, branch_num, item_num, pos_item_log_item_code, pos_item_log_item_name, 
+    pos_item_log_item_unit, pos_item_log_inout_flag, pos_item_log_summary, pos_item_log_date, 
+    pos_item_log_item_price, pos_item_log_item_balance, pos_item_log_item_amount, pos_item_log_operator, 
+    pos_item_log_operate_time, pos_item_log_memo, pos_item_log_bill_no, pos_item_log_bill_detail_num, 
+    pos_item_log_cost_price, pos_item_log_item_assist_unit, pos_item_log_item_assist_balance, 
+    pos_item_log_item_assist_amount, pos_item_log_item_spec, pos_item_log_item_category, 
+    pos_item_log_money, pos_item_log_bizday, pos_item_log_item_assist_price, pos_item_log_lot_num,
+    pos_item_log_order_operate_date, pos_item_log_daily_settlement_num, pos_item_log_cost_money,
+    department_num
+  </sql>
+  <select id="readLog" parameterType="String" resultMap="BaseResultMap">
+    select * from pos_item_log where pos_item_log_item_name = #{itemName}
+  </select>
+  
+  <update id="updateMemo" parameterType="Long">
+  	update pos_item_log set pos_item_log_memo = "aa"
+  	where pos_item_log_id = #{id}
+  </update>
+  
+</mapper>

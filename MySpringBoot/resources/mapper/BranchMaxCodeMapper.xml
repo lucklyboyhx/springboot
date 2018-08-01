@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.MySpringBoot.dao.BranchMaxCodeDao">
+	<resultMap id="BaseResultMap" type="com.example.MySpringBoot.model.BranchMaxCode">
+		<id column="branch_num" jdbcType="INTEGER" property="branchNum" />
+		<result column="item_code" jdbcType="INTEGER" property="itemCode" />
+	</resultMap>
+	<sql id="allColumns">
+		branch_num, item_code
+	</sql>
+	
+	<select id="readCode" parameterType="Integer" resultType="Integer">
+		select item_code from branch_max_code
+		where branch_num = #{branchNum}
+	</select>
+	
+	<update id="upateCode">
+		update branch_max_code
+		set item_code = #{itemCode}
+		where branch_num = #{branchNum}
+	</update>
+	
+	<insert id="save">
+		insert into branch_max_code(branch_num, item_code) 
+		values (#{branchNum}, #{itemCode})
+	</insert>
+</mapper>
